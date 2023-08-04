@@ -8,12 +8,18 @@ class Login:
     Textbook_Password_Xpath = (By.XPATH, "//input[@id='password']")
     Login_Button_Xpath = (By.XPATH, "//button[@type='submit']")
     Login_Status_Xpath = (By.XPATH, "//h2[normalize-space()='CredKart']")
+    Click_Menu_Xpath = (By.XPATH, "//a[@role='button']")
+    click_Logout_Xpath = (By.XPATH, "//a[normalize-space()='Logout']")
+    CLick_Login_button = (By.XPATH, "//a[normalize-space()='Login']")
 
     def __init__(self, driver):
         self.driver = driver
 
     def login_url(self):
         self.driver.get(*Login.Login_Url)
+
+    def Click_Login_link(self):
+        self.driver.find_element(*Login.CLick_Login_button).click()
 
     def Textbook_Email(self, email):
         self.driver.find_element(*Login.Textbook_Email_Xpath).send_keys(email)
@@ -22,13 +28,13 @@ class Login:
         self.driver.find_element(*Login.Textbook_Password_Xpath).send_keys(password)
 
     def Login_Button(self):
-        try:
-            self.driver.find_element(*Login.Login_Button_Xpath).click()
-            print("-------------> Login")
-            return True
-        except:
-            print("Error")
-            return False
+        self.driver.find_element(*Login.Login_Button_Xpath).click()
+
+    def Menu_Button(self):
+        self.driver.find_element(*Login.Click_Menu_Xpath).click()
+
+    def Click_Logout(self):
+        self.driver.find_element(*Login.click_Logout_Xpath).click()
 
     def Login_Status(self):
         try:
